@@ -37,7 +37,7 @@ setInterval(function() {
      setInterval(function() {
          [].slice.call( divs ).forEach(function ( div ) {
         var commentcontent = div.innerHTML;
-        // ScratchFormat
+        // ScratchFormat.
         var scratchformat = commentcontent.replace("scratch_format","<img src='http://scratchformat.usa.cc/logo.png' width='25'>");
         // Blank
         var blank = scratchformat.replace("blank"," ");
