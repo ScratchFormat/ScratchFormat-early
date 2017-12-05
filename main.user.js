@@ -24,7 +24,7 @@ if (location.href.includes("https://scratch.mit.edu/users/") || location.href.in
     setInterval(function() {
         [].slice.call(divs).forEach(function(div) {
             var commentcontent = div.innerHTML;
-            // ScratchFormat
+            // ScratchFormata
             var scratchformat = commentcontent.replace("scratch_format", "<img src='http://scratchformat.usa.cc/logo.png' width='25'>");
             // Version
             var version2 = scratchformat.replace("current_version", version);
