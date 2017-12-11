@@ -8,16 +8,18 @@
 To-do List:
 > Color
 */
-var version = "7.0";
+var version = "8.0";
 // Feature removed by ST
 console.log("Loaded ScratchFormat " + version);
 var divs = document.getElementsByClassName('content');
 // ScratchFormat Syntax
 if (location.href.includes("https://scratch.mit.edu/users/") || location.href.includes("https://scratch.mit.edu/projects/") || location.href.includes("https://scratch.mit.edu/studios/")) { //  Detect all places with comments.
+    document.getElementsByClassName('control-group tooltip right')[0].getElementsByTagName('textarea')[0].style.height = "147px"; //
+    document.getElementsByClassName('control-group tooltip right')[0].getElementsByTagName('textarea')[0].style.width = "492px"; // Change some styles of the textarea
     document.getElementById('footer').innerHTML += "<div id='chooser' style='display:none;width:600px; height:450px; border: 1px solid black; border-radius: 5px;position:fixed;top:50px;left:250px;background-color:white;'> <center> <div> <h1 style='display:table-cell;'>Choose a picture:</h1> </div> <img id='scratchcat' src='https://pufflegamerz.github.io/ScratchFormat/assets/scratchcat.svg'> <img id='gobo' src='https://pufflegamerz.github.io/ScratchFormat/assets/gobo.svg'> <img id='pico' src='https://pufflegamerz.github.io/ScratchFormat/assets/pico.svg'> <img id='nano' src='https://pufflegamerz.github.io/ScratchFormat/assets/nano.svg'><img id='tera' src='https://pufflegamerz.github.io/ScratchFormat/assets/tera.svg'><img id='giga' src='https://pufflegamerz.github.io/ScratchFormat/assets/giga.svg'><img id='customimage' src='https://pufflegamerz.github.io/ScratchFormat/assets/custom.svg'><br><br><button id='cancel-picture'>Cancel</button></center></div>";
     var commentarea = document.getElementsByClassName('control-group tooltip right')[0].getElementsByTagName('textarea')[0];
     document.getElementsByClassName("control-group tooltip right")[0].innerHTML += "I agree to the <a href='http://scratchformat.usa.cc/termsandservice/' target='_blank'>ScratchFormat terms and service.</a>";
-    document.getElementsByClassName("control-group tooltip right")[0].innerHTML = "<div id='scratchFormatTools' style='width: 500px; height: 20px; border-radius: 3px; border: 1px solid lightgrey; background-color: white; margin-bottom: 6px;'><img class='toolitem' id='bold' width='20' src='https://pufflegamerz.github.io/ScratchFormat/assets/bold.png' title='Bold'><img class='toolitem' src='https://pufflegamerz.github.io/ScratchFormat/assets/italic.png' id='italic' title='Italics' width='20'><img class='toolitem' src='https://pufflegamerz.github.io/ScratchFormat/assets/underline.png' title='Underlined' id='underline' width='19'><img class='toolitem' src='https://pufflegamerz.github.io/ScratchFormat/assets/strike.png' title='Strikethrough' id='strike' width='20'><img class='toolitem' src='https://pufflegamerz.github.io/ScratchFormat/assets/sub.png' width='20' title='Subheading' id='sub'><img class='toolitem' src='https://pufflegamerz.github.io/ScratchFormat/assets/big.png' title='Heading' width='20' id='big'><img class='toolitem' id='mark' src='https://pufflegamerz.github.io/ScratchFormat/assets/mark.png' title='Highlight' width='20'><img class='toolitem' id='color' src='https://pufflegamerz.github.io/ScratchFormat/assets/color.png' title='Color' width='19'><img class='toolitem' id='link' width='20' src='https://pufflegamerz.github.io/ScratchFormat/assets/link.png' title='Hyperlink'><img class='toolitem' src='https://pufflegamerz.github.io/ScratchFormat/assets/picture.png' title='Picture' id='picture' width='20'></div>" + document.getElementsByClassName("control-group tooltip right")[0].innerHTML;
+    document.getElementsByClassName("control-group tooltip right")[0].innerHTML = "<div id='scratchFormatTools' style='width: 500px; height: 20px; border-radius: 3px; border: 1px solid lightgrey; background-color: white; margin-bottom: 6px;'><img class='toolitem' id='bold' width='20' src='https://pufflegamerz.github.io/ScratchFormat/assets/bold.png' title='Bold'><img class='toolitem' src='https://pufflegamerz.github.io/ScratchFormat/assets/italic.png' id='italic' title='Italics' width='20'><img class='toolitem' src='https://pufflegamerz.github.io/ScratchFormat/assets/underline.png' title='Underlined' id='underline' width='19'><img class='toolitem' src='https://pufflegamerz.github.io/ScratchFormat/assets/strike.png' title='Strikethrough' id='strike' width='20'><img class='toolitem' src='https://pufflegamerz.github.io/ScratchFormat/assets/sub.png' width='20' title='Subheading' id='sub'><img class='toolitem' src='https://pufflegamerz.github.io/ScratchFormat/assets/big.png' title='Heading' width='20' id='big'><img class='toolitem' id='mark' src='https://pufflegamerz.github.io/ScratchFormat/assets/mark.png' title='Highlight' width='20'><img class='toolitem' id='color' src='https://pufflegamerz.github.io/ScratchFormat/assets/color.png' title='Color' width='19'><img class='toolitem' id='link' width='20' src='https://pufflegamerz.github.io/ScratchFormat/assets/link.png' title='Hyperlink'><img class='toolitem' src='https://pufflegamerz.github.io/ScratchFormat/assets/bullet.png' id='bullet' width='20'><img class='toolitem' src='https://pufflegamerz.github.io/ScratchFormat/assets/picture.png' title='Picture' id='picture' width='20'></div>" + document.getElementsByClassName("control-group tooltip right")[0].innerHTML;
     setInterval(function() {
         divs = document.getElementsByClassName('content');
     }, 10);
@@ -94,7 +96,11 @@ if (location.href.includes("https://scratch.mit.edu/users/") || location.href.in
                 color = color.replace("("+colors[i]+")","<span style='color:"+colors[i]+";'>");
                 color = color.replace("(/"+colors[i]+")","</span>");
             }
-            div.innerHTML = color;
+            var list = color.replace("(list)","<ul>");
+            var list2 = list.replace("(/list)","</ul>");
+            var item = list2.replace("(item)","<li>");
+            var item2 = item.replace("(/item)","</li>");
+            div.innerHTML = item2;
 
         });
     }, 500);
@@ -202,6 +208,17 @@ if (location.href.includes("https://scratch.mit.edu/users/") || location.href.in
         var end = txtarea.selectionEnd;
         var sel = txtarea.value.substring(start, end);
         var finText = txtarea.value.substring(0, start) + "("+color+")"+sel+"(/"+color+")"; + txtarea.value.substring(end);
+        txtarea.value = finText;
+        txtarea.focus();
+        txtarea.selectionEnd = end + 3;
+    };
+    document.getElementById('bullet').onclick = function() {
+        var txtarea = document.getElementsByClassName('control-group tooltip right')[0].getElementsByTagName('textarea')[0];
+        // code from vs.nut.cc/n
+        var start = txtarea.selectionStart;
+        var end = txtarea.selectionEnd;
+        var sel = txtarea.value.substring(start, end);
+        var finText = txtarea.value.substring(0, start) + '(list)\n    (item)' + sel + '(/item)\n(list)' + txtarea.value.substring(end);
         txtarea.value = finText;
         txtarea.focus();
         txtarea.selectionEnd = end + 3;
