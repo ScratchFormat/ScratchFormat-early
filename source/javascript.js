@@ -6,7 +6,7 @@
 |____/   \___| |_|     \__,_|  \__|  \___| |_| |_| |_|      \___/  |_|    |_| |_| |_|  \__,_|  \__|
 
 */
-// Name of feature, image, and tag letter ( like <s></s> ), name of html tag it creates
+// Name of feature, image, and tag letter ( like <s></s> ), name of html tag it creates.
 // Remember to add a onclick event for each option.
 var options = ["Bold,bold.png,b,b","Italic,italic.png,i,i","Underline,underline.png,u,u"]; 
 
